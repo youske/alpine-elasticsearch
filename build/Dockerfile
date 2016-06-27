@@ -15,7 +15,7 @@ ENV PACKAGE="glibc glibc-bin" \
 # elasticsearch user
 RUN addgroup elasticsearch && adduser -S elasticsearch -h /elasticsearch -G elasticsearch -D -H
 
-RUN apk add ${BUILDPACKAGE} --no-cache -t buildtool
+RUN apk upgrade --no-cache && apk add ${BUILDPACKAGE} --no-cache -t buildtool
 
 RUN wget -q --no-check-certificate ${DOWNLOAD_URL} -O- | tar -zx && \
     mv elasticsearch-${ELASTICSEARCH_VERSION} ${ELASTICSEARCH_BASE} && \
